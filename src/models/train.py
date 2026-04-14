@@ -36,9 +36,9 @@ def train_models(X_train, y_train, X_test, y_test):
     """
 
     models = {
-        "Logistic Regression": LogisticRegression(max_iter=1000),
-        "Random Forest": RandomForestClassifier(n_estimators=100, random_state=42),
-        "XGBoost": XGBClassifier(eval_metric="logloss")
+        "Logistic Regression": LogisticRegression(max_iter=1000, class_weight="balanced"),
+        "Random Forest": RandomForestClassifier(n_estimators=100, random_state=42, class_weight="balanced"),
+        "XGBoost": XGBClassifier(eval_metric="logloss", scale_pos_weight=3)
     }
 
     results = {}

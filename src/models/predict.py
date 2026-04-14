@@ -24,7 +24,7 @@ def predict(model, scaler, input_data):
     prob = model.predict_proba(input_scaled)[0][1]
 
     # Class prediction
-    prediction = model.predict(input_scaled)[0]
+    prediction = 1 if prob > 0.35 else 0
 
     # Risk scoring
     if prob < 0.3:
