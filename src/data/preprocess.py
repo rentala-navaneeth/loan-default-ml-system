@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from imblearn.over_sampling import SMOTE
 
 def preprocess_data(df: pd.DataFrame):
     """
@@ -18,6 +19,8 @@ def preprocess_data(df: pd.DataFrame):
         random_state=42,
         stratify=y
     )
+    smote = SMOTE(random_state=42)
+    X_train, y_train = smote.fit_resample(X_train, y_train)
 
     # Handle missing values (safe fallback)
     X_train = X_train.fillna(X_train.mean())
