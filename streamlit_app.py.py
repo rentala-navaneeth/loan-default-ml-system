@@ -26,19 +26,21 @@ if st.button("Predict Risk"):
     ]
 
     try:
-        response = requests.post("https://your-app-name.onrender.com/predict")
-
+        response = requests.post(
+            "https://loan-default-api-mqxj.onrender.com/predict",
+            json={"features": features}
+        )
         result = response.json()
 
         st.subheader("Prediction Result")
         risk = result["risk_level"]
         prob = result["probability"]
         if risk == "High":
-            st.error("🚨 High Risk of Default")
+            st.error("High Risk of Default")
         elif risk == "Medium":
-            st.warning("⚠️ Moderate Risk")
+            st.warning("Moderate Risk")
         else:
-            st.success("✅ Low Risk Customer")
+            st.success("Low Risk Customer")
 
         st.metric("Default Probability", prob)
 
